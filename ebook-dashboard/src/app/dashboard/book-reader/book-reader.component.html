@@ -1,0 +1,44 @@
+<div class="book-reader-container mat-elevation-z4 p-6">
+  <h2 class="mat-display-1 mat-title text-center mb-6">{{ book.title }}</h2>
+
+  <div class="progress-section mb-8">
+    <h3 class="mat-body-1 font-medium text-center">
+      Page {{ book.currentPage }} of {{ book.totalPages }}
+    </h3>
+
+    <mat-progress-bar
+      mode="determinate"
+      [value]="(book.currentPage / book.totalPages) * 100"
+      class="mat-elevation-z1 mt-4"
+    >
+    </mat-progress-bar>
+  </div>
+
+  <div class="page-content mb-8">
+    <div class="mat-card p-6 rounded mat-elevation-z1">
+      <p class="mat-body-1">Content of Page {{ book.currentPage }}</p>
+    </div>
+  </div>
+
+  <div class="navigation text-center">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="previousPage()"
+      [disabled]="book.currentPage === 1"
+      class="mat-elevation-z2 mr-4"
+    >
+      Previous
+    </button>
+
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="nextPage()"
+      [disabled]="book.currentPage === book.totalPages"
+      class="mat-elevation-z2"
+    >
+      Next
+    </button>
+  </div>
+</div>

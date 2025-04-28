@@ -1,0 +1,62 @@
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>lock</mat-icon>
+      <mat-card-title>{{ isLogin ? "Login" : "Signup" }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            placeholder="Enter your username"
+            formControlName="username"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+          />
+        </mat-form-field>
+
+        <div *ngIf="!isLogin">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input
+              matInput
+              type="password"
+              placeholder="Confirm your password"
+              formControlName="confirmPassword"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="authForm.invalid"
+          >
+            {{ isLogin ? "Login" : "Sign Up" }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+      <a (click)="toggleForm()">
+        {{
+          isLogin
+            ? "Don't have an account? Sign Up"
+            : "Already have an account? Login"
+        }}
+      </a>
+    </mat-card-footer>
+  </mat-card>
+</div>

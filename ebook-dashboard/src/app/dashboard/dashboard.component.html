@@ -1,0 +1,32 @@
+<div class="header">
+  <h2>Welcome to your Dashboard</h2>
+  <button mat-raised-button color="warn" class="logout-btn" (click)="logout()">
+    Logout
+  </button>
+</div>
+<div>
+  <div class="ebooks-list">
+    <div *ngFor="let ebook of ebooks" class="ebook-item">
+      <h3>{{ ebook.title }}</h3>
+      <p>Progress: {{ ebook.progress }}%</p>
+      <button
+        *ngIf="!isPurchased(ebook.id)"
+        mat-raised-button
+        color="primary"
+        (click)="purchaseEbook(ebook.id)"
+      >
+        Purchase
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="startReading(ebook.id)"
+      >
+        Start Reading
+      </button>
+      <button mat-raised-button color="accent" (click)="viewProgress(ebook.id)">
+        View Progress
+      </button>
+    </div>
+  </div>
+</div>
